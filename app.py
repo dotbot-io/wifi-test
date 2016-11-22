@@ -6,20 +6,23 @@ from flask_bootstrap import Bootstrap
 
 from wifi import Cell, Scheme
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField
+from wtforms import StringField, SelectField, SubmitField
 
 class WifiForm(FlaskForm):
-    language = SelectField('Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
+    wifi = SelectField('WiFI network', choices=[])
+    submit = SubmitField('submit')
 
 app = Flask(__name__)
 Bootstrap(app)
 app.config['SECRET_KEY'] = 'blaba'
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def index():
-    cells = Cell.all('wlan0')
     form = WifiForm()
-    form.language.choices = [(idx, c.ssid + '@' + str(c.frequency)) for idx, c in enumerate(cells)]
+    if form.validate_on_submit():
+        return form.wifi.data
+    cells = Cell.all('wlan0')
+    form.wifi.choices = [(idx, c.ssid + '@' + str(c.frequency)) for idx, c in enumerate(cells)]
     return render_template('index.html', cells=cells, form=form)
 
 if __name__ == '__main__':

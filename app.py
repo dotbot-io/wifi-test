@@ -19,7 +19,7 @@ app.config['SECRET_KEY'] = 'blaba'
 def index():
     cells = Cell.all('wlan0')
     form = WifiForm()
-    form.language.choices = [(idx, c.ssid + '@' + str(c.frequency)) for idx, c in enumarate(cells)]
+    form.language.choices = [(idx, c.ssid + '@' + str(c.frequency)) for idx, c in enumerate(cells)]
     return render_template('index.html', cells=cells, form=form)
 
 if __name__ == '__main__':

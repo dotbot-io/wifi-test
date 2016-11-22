@@ -5,10 +5,10 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 
 from wifi import Cell, Scheme
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField
 
-class WifiForm(Form):
+class WifiForm(FlaskForm):
     language = SelectField('Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])
 
 app = Flask(__name__)

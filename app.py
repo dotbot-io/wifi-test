@@ -22,7 +22,7 @@ def index():
     cells = Cell.all('wlan0')
     form.wifi.choices = [(idx, c.ssid + '@' + str(c.frequency)) for idx, c in enumerate(cells)]
     if form.validate_on_submit():
-        return form.wifi.data
+        return str(form.wifi.data)
     return render_template('index.html', cells=cells, form=form)
 
 if __name__ == '__main__':

@@ -13,6 +13,7 @@ class WifiForm(FlaskForm):
 
 app = Flask(__name__)
 Bootstrap(app)
+app.config['SECRET_KEY'] = 'blaba'
 
 @app.route('/')
 def index():

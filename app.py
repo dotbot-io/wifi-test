@@ -13,3 +13,6 @@ Bootstrap(app)
 def index():
     cells = Cell.all('wlan0')
     return render_template('index.html', cells=cells)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

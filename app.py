@@ -6,6 +6,7 @@ from flask_bootstrap import Bootstrap
 
 from wifi import Cell, Scheme
 from flask_wtf import Form
+wtforms import StringField, SelectField
 
 class WifiForm(Form):
     language = SelectField('Programming Language', choices=[('cpp', 'C++'), ('py', 'Python'), ('text', 'Plain Text')])

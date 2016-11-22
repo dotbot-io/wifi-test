@@ -9,7 +9,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
 
 class WifiForm(FlaskForm):
-    wifi = SelectField('WiFI network', choices=[])
+    wifi = SelectField('WiFI network', choices=[], coerce=int)
     submit = SubmitField('submit')
 
 app = Flask(__name__)

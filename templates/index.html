@@ -1,6 +1,9 @@
 {% extends "bootstrap/base.html" %}
 {% block title %}This is an example page{% endblock %}
 
+{% import "bootstrap_wtf.html" as wtf %}
+
+
 {% block navbar %}
 <div class="navbar navbar-fixed-top">
   <!-- ... -->
@@ -10,6 +13,7 @@
 {% block content %}
   <h1>Hello, Bootstrap</h1>
 
+  {{ wtf.quick_form(form) }}
 
   {% for cell in cells %}
     <p>

@@ -19,10 +19,10 @@ app.config['SECRET_KEY'] = 'blaba'
 @app.route('/', methods=["GET", "POST"])
 def index():
     form = WifiForm()
-    cells = Cell.all('wlan0')
-    form.wifi.choices = [(idx, c.ssid + '@' + str(c.frequency)) for idx, c in enumerate(cells)]
     if form.validate_on_submit():
         return str(form.wifi.data)
+    cells = Cell.all('wlan0')
+    form.wifi.choices = [(idx, c.ssid + '@' + str(c.frequency)) for idx, c in enumerate(cells)]
     return render_template('index.html', cells=cells, form=form)
 
 if __name__ == '__main__':
